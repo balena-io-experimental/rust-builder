@@ -17,8 +17,8 @@ echo "$(grep " rustc-$RUST_VERSION-src.tar.gz" /checksums-commit-table)" | sha25
 tar -xzvf rustc-$RUST_VERSION-src.tar.gz -C rust --strip-components=1
 
 cd rust
-CC=clang CXX=clang++ ./configure --disable-libcpp --enable-clang --prefix=/
-make -j$(nproc) all
+./configure --prefix=/ --llvm-root=/usr/lib/llvm-3.7
+make all
 make install
 cd /
 tar -cvzf $TAR_FILE rust/*
